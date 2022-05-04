@@ -6,6 +6,7 @@
 package com.mraljabari.employeedatabase;
 
 import java.sql.Connection;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -169,20 +170,45 @@ public class employeeForm extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableDataMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableData);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 616, 152));
 
         jButtonEdit.setText("Edit");
+        jButtonEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 259, -1));
 
         jButtonInsert.setText("Insert");
+        jButtonInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInsertActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonInsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 259, -1));
 
         jButtonDelete.setText("Delete");
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 259, -1));
 
         jButtonSave.setText("Save");
+        jButtonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 259, -1));
 
         jButtonClose.setText("Close");
@@ -197,36 +223,144 @@ public class employeeForm extends javax.swing.JFrame {
         getContentPane().add(jButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 129, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 480));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 760, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 420, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 420));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldEmployeeIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmployeeIdActionPerformed
+    private void jTableDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableDataMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldEmployeeIdActionPerformed
+        int row = jTableData.rowAtPoint(evt.getPoint());
 
-    private void jTextFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNameActionPerformed
+        String empID = jTableData.getValueAt(row, 1).toString();
+        jTextFieldEmployeeId.setEditable(false);
+        jTextFieldEmployeeId.setText(empID);
 
-    private void jTextFieldAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAddressActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldAddressActionPerformed
+        String name = jTableData.getValueAt(row, 2).toString();
+        jTextFieldName.setText(name);
 
-    private void jTextFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldEmailActionPerformed
+        String pos = jTableData.getValueAt(row, 3).toString();
+        jComboBoxPosition.setSelectedItem(pos);
+
+        String adrs = jTableData.getValueAt(row, 4).toString();
+        jTextFieldAddress.setText(adrs);
+
+        String mail = jTableData.getValueAt(row, 5).toString();
+        jTextFieldEmail.setText(mail);
+
+        String telp = jTableData.getValueAt(row, 6).toString();
+        jTextFieldTelephone.setText(telp);
+
+    }//GEN-LAST:event_jTableDataMouseClicked
 
     private void jTextFieldTelephoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelephoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldTelephoneActionPerformed
 
+    private void jTextFieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldEmailActionPerformed
+
+    private void jTextFieldAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldAddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldAddressActionPerformed
+
+    private void jTextFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNameActionPerformed
+
+    private void jTextFieldEmployeeIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmployeeIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldEmployeeIdActionPerformed
+
     private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButtonCloseActionPerformed
+
+    private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
+        // TODO add your handling code here:
+        try {
+            String sqlInsert = "INSERT INTO employee VALUES "
+            + "('"+jTextFieldEmployeeId.getText()+ "',"
+            + "'"+jTextFieldName.getText()+ "',"
+            + "'"+jComboBoxPosition.getSelectedItem()+ "',"
+            + "'"+jTextFieldAddress.getText()+ "',"
+            + "'"+jTextFieldEmail.getText()+ "',"
+            + "'"+jTextFieldTelephone.getText()+ "')";
+
+            java.sql.Connection conn = (Connection)ConnectionClass.configDB();
+            java.sql.PreparedStatement pstm = conn.prepareStatement(sqlInsert);
+            pstm.execute();
+            JOptionPane.showMessageDialog(null, "Insert Data Successfully");
+
+            clearForm();
+            showDataTable();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonSaveActionPerformed
+
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        // TODO add your handling code here:
+        try {
+            String sqlDel = "DELETE FROM employee WHERE emp_id = '"+jTextFieldEmployeeId.getText()+ "'";
+            java.sql.Connection conn = (Connection)ConnectionClass.configDB();
+            java.sql.PreparedStatement pstm = conn.prepareStatement(sqlDel);
+            pstm.execute();
+            JOptionPane.showMessageDialog(null, "Delete Data Successfully");
+
+            clearForm();
+            showDataTable();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
+
+    private void jButtonInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertActionPerformed
+        // TODO add your handling code here:
+        clearForm();
+
+    }//GEN-LAST:event_jButtonInsertActionPerformed
+
+    private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
+        // TODO add your handling code here:
+        try {
+            String sqlEdit = "UPDATE employee SET "
+            + "name = '"+jTextFieldName.getText()+ "',"
+            + "position = '"+jComboBoxPosition.getSelectedItem()+ "',"
+            + "address = '"+jTextFieldAddress.getText()+ "',"
+            + "email = '"+jTextFieldEmail.getText()+ "',"
+            + "tlp = '"+jTextFieldTelephone.getText()+ "' "
+            + "WHERE emp_id = '"+jTextFieldEmployeeId.getText()+ "'";
+
+            java.sql.Connection conn = (Connection)ConnectionClass.configDB();
+            java.sql.PreparedStatement pstm = conn.prepareStatement(sqlEdit);
+            pstm.execute();
+            JOptionPane.showMessageDialog(null, "Edit Data Successfully");
+
+            clearForm();
+            showDataTable();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_jButtonEditActionPerformed
 
     /**
      * @param args the command line arguments
