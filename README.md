@@ -1,5 +1,5 @@
 # employeeDatabase
-Simple program for employee databases made with java swing and databases MySql
+Simple program CRUD for employee databases made with java swing and databases MySql
 
 ## Note
 Change Configuration on \src\com\mraljabari\employeedatabase\ConnectionClass.java to connect databases MySql
