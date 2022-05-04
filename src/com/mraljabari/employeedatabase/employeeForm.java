@@ -140,6 +140,11 @@ public class employeeForm extends javax.swing.JFrame {
         getContentPane().add(jButtonSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 288, 259, -1));
 
         jButtonClose.setText("Close");
+        jButtonClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCloseActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 331, 120, -1));
 
         jButtonCancel.setText("Cancel");
@@ -168,6 +173,11 @@ public class employeeForm extends javax.swing.JFrame {
     private void jTextFieldTelephoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelephoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldTelephoneActionPerformed
+
+    private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButtonCloseActionPerformed
 
     /**
      * @param args the command line arguments
