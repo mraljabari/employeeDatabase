@@ -19,7 +19,7 @@ public class ConnectionClass {
     
     public static Connection configDB()throws SQLException{
         try {
-            String url = "jdbc.mysql://localhost:8008/employeedatabase";
+            String url = "jdbc:mysql://localhost:3306/employeedatabase";
             String user = "root";
             String pass = "";
             

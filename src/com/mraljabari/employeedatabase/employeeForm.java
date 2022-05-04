@@ -5,17 +5,59 @@
  */
 package com.mraljabari.employeedatabase;
 
+import java.sql.Connection;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author M RIZKI AL
  */
 public class employeeForm extends javax.swing.JFrame {
 
+    private void clearForm(){
+        jTextFieldEmployeeId.setEditable(true);
+        jTextFieldEmployeeId.setText(null);
+        jTextFieldName.setText(null);
+        jComboBoxPosition.setSelectedItem(this);
+        jTextFieldAddress.setText(null);
+        jTextFieldEmail.setText(null);
+        jTextFieldTelephone.setText(null);
+    }
+    
+    private void showDataTable(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("No");
+        model.addColumn("Employee ID");
+        model.addColumn("Name");
+        model.addColumn("Position");
+        model.addColumn("Address");
+        model.addColumn("Email");
+        model.addColumn("Telephone");
+        
+        try {
+            int no = 1;
+            String sql = "SELECT * FROM employee";
+            java.sql.Connection conn = (Connection)ConnectionClass.configDB();
+            java.sql.Statement stm = conn.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            
+            while (res.next()) {
+                model.addRow(new Object[]{no++, res.getString(1), res.getString(2), 
+                res.getString(3), res.getString(4), res.getString(5), res.getString(6),});
+            }
+           jTableData.setModel(model);
+            
+        } catch (Exception e) {
+            System.out.print("Error : " + e.getMessage());
+        }
+    }
+    
     /**
      * Creates new form employeeForm
      */
     public employeeForm() {
         initComponents();
+        showDataTable();
     }
 
     /**
@@ -41,16 +83,20 @@ public class employeeForm extends javax.swing.JFrame {
         jTextFieldTelephone = new javax.swing.JTextField();
         jComboBoxPosition = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableData = new javax.swing.JTable();
         jButtonEdit = new javax.swing.JButton();
         jButtonInsert = new javax.swing.JButton();
         jButtonDelete = new javax.swing.JButton();
         jButtonSave = new javax.swing.JButton();
         jButtonClose = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Employee Database System");
+        setMinimumSize(new java.awt.Dimension(675, 410));
+        setPreferredSize(new java.awt.Dimension(675, 410));
+        setSize(new java.awt.Dimension(675, 410));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Data Empolyee");
@@ -112,7 +158,7 @@ public class employeeForm extends javax.swing.JFrame {
         jComboBoxPosition.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manager IT", "Staff IT", "Networking IT", "Programmer" }));
         getContentPane().add(jComboBoxPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 253, 234, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -123,21 +169,21 @@ public class employeeForm extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableData);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 31, 616, 152));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 616, 152));
 
         jButtonEdit.setText("Edit");
-        getContentPane().add(jButtonEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 230, 259, -1));
+        getContentPane().add(jButtonEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 259, -1));
 
         jButtonInsert.setText("Insert");
-        getContentPane().add(jButtonInsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 201, 259, -1));
+        getContentPane().add(jButtonInsert, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 259, -1));
 
         jButtonDelete.setText("Delete");
-        getContentPane().add(jButtonDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 259, 259, -1));
+        getContentPane().add(jButtonDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, 259, -1));
 
         jButtonSave.setText("Save");
-        getContentPane().add(jButtonSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 288, 259, -1));
+        getContentPane().add(jButtonSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 259, -1));
 
         jButtonClose.setText("Close");
         jButtonClose.addActionListener(new java.awt.event.ActionListener() {
@@ -145,10 +191,13 @@ public class employeeForm extends javax.swing.JFrame {
                 jButtonCloseActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 331, 120, -1));
+        getContentPane().add(jButtonClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 330, 120, -1));
 
         jButtonCancel.setText("Cancel");
-        getContentPane().add(jButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 331, 129, -1));
+        getContentPane().add(jButtonCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 129, -1));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 480));
 
         pack();
         setLocationRelativeTo(null);
@@ -229,8 +278,9 @@ public class employeeForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableData;
     private javax.swing.JTextField jTextFieldAddress;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldEmployeeId;
